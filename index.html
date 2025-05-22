@@ -225,6 +225,24 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+  @media (max-width: 600px) {
+  .initials-symbol,
+  .counter {
+    font-size: 1.1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .main-title {
+    font-size: 2rem;
+    margin-top: 4rem; /* Push title down to avoid overlap */
+  }
+
+  .container {
+    padding-top: 4rem; /* Extra space for fixed header items */
+  }
+}
+
   </style>
 </head>
 <body>
