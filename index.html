@@ -17,6 +17,9 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
+            /* Prevent mobile browser address bar from triggering resize */
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for modern browsers */
         }
 
         .stars {
@@ -519,10 +522,17 @@
         });
 
         // Recreate hearts on window resize for better mobile experience
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            if (!usedReasons.length) { // Only if no hearts have been clicked yet
-                createHearts();
-            }
+            // Clear previous timeout
+            clearTimeout(resizeTimeout);
+            
+            // Only recreate hearts after resize is complete and no hearts have been clicked
+            resizeTimeout = setTimeout(() => {
+                if (usedReasons.length === 0) { // Only if no hearts have been clicked yet
+                    createHearts();
+                }
+            }, 250); // Wait for resize to complete
         });
     </script>
 </body>
