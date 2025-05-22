@@ -202,10 +202,115 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Mobile Responsive Design */
         @media (max-width: 768px) {
-            .main-title { font-size: 2rem; }
-            .hearts-container { height: 300px; }
-            .heart { width: 50px; height: 50px; }
+            .main-title { 
+                font-size: 2rem; 
+                margin-bottom: 0.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                margin-bottom: 2rem;
+                padding: 0 1rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .hearts-container { 
+                height: 500px; 
+                width: 100%;
+                margin: 1rem 0;
+            }
+            
+            .heart { 
+                width: 45px; 
+                height: 45px; 
+            }
+            
+            .heart::before,
+            .heart::after {
+                width: 23px;
+                height: 36px;
+            }
+            
+            .heart::before {
+                left: 23px;
+            }
+            
+            .heart::after {
+                left: 0px;
+            }
+            
+            .reason-popup {
+                width: 95%;
+                max-width: 350px;
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+            
+            .reason-popup h3 {
+                font-size: 1.3rem;
+            }
+            
+            .reason-popup p {
+                font-size: 1rem;
+            }
+            
+            .counter {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.8rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-title { 
+                font-size: 1.8rem; 
+            }
+            
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .hearts-container { 
+                height: 600px; 
+            }
+            
+            .heart { 
+                width: 40px; 
+                height: 40px; 
+            }
+            
+            .heart::before,
+            .heart::after {
+                width: 20px;
+                height: 32px;
+            }
+            
+            .heart::before {
+                left: 20px;
+            }
+            
+            .reason-popup {
+                padding: 1.2rem;
+            }
+            
+            .reason-popup h3 {
+                font-size: 1.2rem;
+            }
+            
+            .reason-popup p {
+                font-size: 0.95rem;
+            }
+            
+            .close-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -390,6 +495,13 @@
         document.addEventListener('DOMContentLoaded', () => {
             createStars();
             createHearts();
+        });
+
+        // Recreate hearts on window resize for better mobile experience
+        window.addEventListener('resize', () => {
+            if (!usedReasons.length) { // Only if no hearts have been clicked yet
+                createHearts();
+            }
         });
     </script>
 </body>
