@@ -433,9 +433,17 @@
             
             usedReasons.push(originalIndex);
             heartElement.classList.add('clicked');
-            heartElement.style.opacity = '0.5';
-            heartElement.style.transform = 'scale(0.8)';
+            
+            // Make heart disappear with animation
+            heartElement.style.transition = 'all 0.5s ease';
+            heartElement.style.opacity = '0';
+            heartElement.style.transform = 'scale(0)';
             heartElement.style.pointerEvents = 'none';
+            
+            // Remove heart from DOM after animation
+            setTimeout(() => {
+                heartElement.remove();
+            }, 500);
 
             document.getElementById('reasonTitle').textContent = selectedReason.title;
             document.getElementById('reasonText').textContent = selectedReason.text;
