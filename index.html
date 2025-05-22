@@ -40,36 +40,48 @@
       100% { opacity: 1; transform: scale(1.2); }
     }
 
-    .initials-symbol {
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      font-size: 1.5rem;
-      font-family: 'Georgia', cursive;
-      color: white;
-      z-index: 11;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      animation: fadeInSymbol 1.5s ease forwards;
-      opacity: 0;
-    }
-
+      .initials-symbol {
+        position: fixed;
+        top: 1rem;
+        left: 1rem;
+        font-size: 1.6rem;
+        font-family: 'Georgia', cursive;
+        color: white;
+        z-index: 11;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 0.4rem 1.2rem;
+        border-radius: 20px;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
+                    0 0 30px rgba(255, 100, 150, 0.3);
+        animation: fadeInSymbol 1.5s ease forwards, sparkleGlow 4s ease-in-out infinite;
+        opacity: 0;
+      }
+    
     .initials-symbol span {
-      display: inline-block;
-      animation: pulseHeart 1.2s infinite ease-in-out;
-    }
-
+        display: inline-block;
+        animation: pulseHeart 1.2s infinite ease-in-out;
+      }
+    
     @keyframes fadeInSymbol {
       from { opacity: 0; transform: translateY(-10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
+    
     @keyframes pulseHeart {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.3); }
+    }
+    
+    @keyframes sparkleGlow {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
+                    0 0 30px rgba(255, 100, 150, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
+                    0 0 40px rgba(255, 150, 200, 0.4);
+      }
     }
 
     .container {
