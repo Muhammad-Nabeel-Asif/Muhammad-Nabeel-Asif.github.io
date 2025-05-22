@@ -1,539 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reasons Why I Love You</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reasons Why I Love You</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-            /* Prevent mobile browser address bar from triggering resize */
-            height: 100vh;
-            height: 100dvh; /* Dynamic viewport height for modern browsers */
-        }
+    body {
+      font-family: 'Georgia', Times, 'Times New Roman', serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100dvh;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
 
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite alternate;
-        }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
 
-        @keyframes twinkle {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.2); }
-        }
+    @keyframes twinkle {
+      0% { opacity: 0.3; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
 
-        .container {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
+    .container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
 
-        .main-title {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInDown 1s ease-out;
-        }
+    .main-title {
+      font-size: 3rem;
+      color: white;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      animation: fadeInDown 1s ease-out;
+    }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 3rem;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
+    .subtitle {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease-out 0.5s both;
+    }
 
-        .hearts-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            margin: 2rem 0;
-        }
+    .hearts-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      height: 400px;
+      margin: 2rem 0;
+    }
 
-        .heart {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            animation: float 3s ease-in-out infinite;
-        }
+    .heart {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: float 3s ease-in-out infinite;
+    }
 
-        .heart:hover {
-            transform: scale(1.2);
-        }
+    .heart:hover {
+      transform: scale(1.2);
+    }
 
-        .heart::before,
-        .heart::after {
-            content: '';
-            width: 26px;
-            height: 40px;
-            position: absolute;
-            left: 30px;
-            top: 0;
-            background: #ff6b9d;
-            border-radius: 26px 26px 0 0;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-        }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 26px;
+      height: 40px;
+      position: absolute;
+      left: 30px;
+      top: 0;
+      background: #ff6b9d;
+      border-radius: 26px 26px 0 0;
+      transform: rotate(-45deg);
+      transform-origin: 0 100%;
+    }
 
-        .heart::after {
-            left: 4px;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
-        }
+    .heart::after {
+      left: 4px;
+      transform: rotate(45deg);
+      transform-origin: 100% 100%;
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
 
-        .reason-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            max-width: 400px;
-            width: 90%;
-            text-align: center;
-            z-index: 100;
-            transition: all 0.3s ease;
-        }
+    .reason-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      z-index: 100;
+      transition: all 0.3s ease;
+    }
 
-        .reason-popup.show {
-            transform: translate(-50%, -50%) scale(1);
-        }
+    .reason-popup.show {
+      transform: translate(-50%, -50%) scale(1);
+    }
 
-        .reason-popup h3 {
-            color: #764ba2;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
+    .reason-popup h3 {
+      color: #764ba2;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
 
-        .reason-popup p {
-            color: #666;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
+    .reason-popup p {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
 
-        .close-btn {
-            background: #ff6b9d;
-            color: white;
-            border: none;
-            padding: 0.8rem 2rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background 0.3s ease;
-        }
+    .close-btn {
+      background: #ff6b9d;
+      color: white;
+      border: none;
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
 
-        .close-btn:hover {
-            background: #e55a87;
-        }
+    .close-btn:hover {
+      background: #e55a87;
+    }
 
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 99;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
 
-        .overlay.show {
-            opacity: 1;
-            visibility: visible;
-        }
+    .overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
 
-        .counter {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            background: rgba(255,255,255,0.2);
-            padding: 1rem;
-            border-radius: 15px;
-            color: white;
-            font-size: 1.1rem;
-            backdrop-filter: blur(10px);
-            z-index: 10;
-        }
+    .counter {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      background: rgba(255,255,255,0.2);
+      padding: 1rem;
+      border-radius: 15px;
+      color: white;
+      font-size: 1.1rem;
+      backdrop-filter: blur(10px);
+      z-index: 10;
+    }
 
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-        /* Mobile Responsive Design */
-        @media (max-width: 768px) {
-            .main-title { 
-                font-size: 2rem; 
-                margin-bottom: 0.5rem;
-                margin-top: 3rem; /* Add space for counter */
-            }
-            
-            .subtitle {
-                font-size: 1rem;
-                margin-bottom: 2rem;
-                padding: 0 1rem;
-            }
-            
-            .container {
-                padding: 1rem;
-                padding-top: 0; /* Remove top padding since title has margin-top */
-            }
-            
-            .hearts-container { 
-                height: 500px; 
-                width: 100%;
-                margin: 1rem 0;
-            }
-            
-            .heart { 
-                width: 45px; 
-                height: 45px; 
-            }
-            
-            .heart::before,
-            .heart::after {
-                width: 23px;
-                height: 36px;
-            }
-            
-            .heart::before {
-                left: 23px;
-            }
-            
-            .heart::after {
-                left: 0px;
-            }
-            
-            .reason-popup {
-                width: 95%;
-                max-width: 350px;
-                padding: 1.5rem;
-                margin: 0 1rem;
-            }
-            
-            .reason-popup h3 {
-                font-size: 1.3rem;
-            }
-            
-            .reason-popup p {
-                font-size: 1rem;
-            }
-            
-            .counter {
-                top: 1rem;
-                right: 1rem;
-                padding: 0.6rem 0.8rem;
-                font-size: 0.9rem;
-                border-radius: 12px;
-            }
-        }
+    @media (max-width: 768px) {
+      .main-title { font-size: 2rem; margin-top: 3rem; }
+      .subtitle { font-size: 1rem; padding: 0 1rem; margin-bottom: 2rem; }
+      .container { padding: 1rem; padding-top: 0; }
+      .hearts-container { height: 500px; }
+      .heart { width: 45px; height: 45px; }
+      .heart::before, .heart::after { width: 23px; height: 36px; }
+      .heart::before { left: 23px; }
+      .heart::after { left: 0; }
+    }
 
-        @media (max-width: 480px) {
-            .main-title { 
-                font-size: 1.8rem;
-                margin-top: 3.5rem; /* More space for counter on small screens */
-            }
-            
-            .subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .hearts-container { 
-                height: 600px; 
-            }
-            
-            .heart { 
-                width: 40px; 
-                height: 40px; 
-            }
-            
-            .heart::before,
-            .heart::after {
-                width: 20px;
-                height: 32px;
-            }
-            
-            .heart::before {
-                left: 20px;
-            }
-            
-            .reason-popup {
-                padding: 1.2rem;
-            }
-            
-            .reason-popup h3 {
-                font-size: 1.2rem;
-            }
-            
-            .reason-popup p {
-                font-size: 0.95rem;
-            }
-            
-            .close-btn {
-                padding: 0.7rem 1.5rem;
-                font-size: 0.9rem;
-            }
-            
-            .counter {
-                top: 0.8rem;
-                right: 0.8rem;
-                padding: 0.5rem 0.7rem;
-                font-size: 0.85rem;
-                border-radius: 10px;
-            }
-        }
-    </style>
+    @media (max-width: 480px) {
+      .main-title { font-size: 1.8rem; margin-top: 3.5rem; }
+      .subtitle { font-size: 0.9rem; }
+      .hearts-container { height: 600px; }
+      .heart { width: 40px; height: 40px; }
+      .heart::before, .heart::after { width: 20px; height: 32px; }
+      .heart::before { left: 20px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="stars" id="stars"></div>
-    
-    <div class="container">
-        <h1 class="main-title">Reasons Why I Love You</h1>
-        <p class="subtitle">Click on the hearts to discover all the ways you make my world brighter ✨</p>
-        
-        <div class="hearts-container" id="heartsContainer">
-            <!-- Hearts will be generated by JavaScript -->
-        </div>
-    </div>
+  <div class="stars" id="stars"></div>
+  <div class="container">
+    <h1 class="main-title">Reasons Why I Love You</h1>
+    <p class="subtitle">Click on the hearts to discover all the ways you make my world brighter ✨</p>
+    <div class="hearts-container" id="heartsContainer"></div>
+  </div>
+  <div class="counter">
+    <span id="counter">0</span> / <span id="total">0</span> discovered
+  </div>
+  <div class="overlay" id="overlay"></div>
+  <div class="reason-popup" id="reasonPopup">
+    <h3 id="reasonTitle"></h3>
+    <p id="reasonText"></p>
+    <button class="close-btn" onclick="closePopup()">Close ❤️</button>
+  </div>
 
-    <div class="counter">
-        <span id="counter">0</span> / <span id="total">0</span> discovered
-    </div>
+  <script>
+    const reasons = [
+      { title: "Your Beautiful Smile", text: "Every time you smile..." },
+      { title: "Your Kindness", text: "The way you treat everyone..." },
+      { title: "Your Laugh", text: "Your laugh is music to my ears..." },
+      { title: "Your Intelligence", text: "I love how your mind works..." },
+      { title: "Your Strength", text: "You face every challenge..." },
+      { title: "Your Dreams", text: "I love hearing about your dreams..." },
+      { title: "Your Hugs", text: "Being in your arms feels like home..." },
+      { title: "Your Uniqueness", text: "There's nobody else like you..." },
+      { title: "Your Heart", text: "You have the most loving heart..." },
+      { title: "Your Everything", text: "I love you for who you are..." }
+    ];
 
-    <div class="overlay" id="overlay"></div>
-    <div class="reason-popup" id="reasonPopup">
-        <h3 id="reasonTitle"></h3>
-        <p id="reasonText"></p>
-        <button class="close-btn" onclick="closePopup()">Close ❤️</button>
-    </div>
+    let discoveredCount = 0;
+    let usedReasons = [];
 
-    <script>
-        // Array of reasons - customize these for your love!
-        const reasons = [
-            {
-                title: "Your Beautiful Smile",
-                text: "Every time you smile, my whole world lights up. It's the most beautiful thing I've ever seen, and it never fails to make my heart skip a beat."
-            },
-            {
-                title: "Your Kindness",
-                text: "The way you treat everyone with such genuine kindness and compassion shows me what a beautiful soul you have. You make the world a better place just by being in it."
-            },
-            {
-                title: "Your Laugh",
-                text: "Your laugh is music to my ears. It's contagious, pure, and absolutely magical. I could listen to it for hours and never get tired of it."
-            },
-            {
-                title: "Your Intelligence",
-                text: "I love how your mind works - the way you think, analyze, and understand the world. Our conversations are always so engaging and meaningful."
-            },
-            {
-                title: "Your Strength",
-                text: "You face every challenge with such grace and determination. Your strength inspires me to be better every single day."
-            },
-            {
-                title: "Your Dreams",
-                text: "I love hearing about your dreams and aspirations. Your passion for life and your goals motivates me to support you in every way I can."
-            },
-            {
-                title: "Your Hugs",
-                text: "Being in your arms feels like coming home. Your hugs have the power to make everything better, no matter how difficult the day has been."
-            },
-            {
-                title: "Your Uniqueness",
-                text: "There's nobody else in the world quite like you. All your little quirks and habits make you perfectly, wonderfully you."
-            },
-            {
-                title: "Your Heart",
-                text: "You have the most loving, caring heart I've ever known. The way you love me and others so deeply is truly extraordinary."
-            },
-            {
-                title: "Your Everything",
-                text: "I love you not just for who you are, but for who I become when I'm with you. You make me want to be the best version of myself."
-            }
-        ];
+    function createStars() {
+      const starsContainer = document.getElementById('stars');
+      for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+        star.style.animationDelay = Math.random() * 2 + 's';
+        starsContainer.appendChild(star);
+      }
+    }
 
-        let discoveredCount = 0;
-        let usedReasons = [];
+    function createHearts() {
+      const container = document.getElementById('heartsContainer');
+      container.innerHTML = '';
+      const heartCount = Math.min(12, reasons.length);
 
-        // Create stars background
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = Math.random() * 3 + 1 + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 2 + 's';
-                starsContainer.appendChild(star);
-            }
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.setAttribute('role', 'button');
+        heart.setAttribute('tabindex', '0');
+        heart.style.left = Math.random() * 80 + 10 + '%';
+        heart.style.top = Math.random() * 70 + 15 + '%';
+        heart.style.animationDelay = Math.random() * 3 + 's';
+        heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        heart.addEventListener('click', () => showReason(heart));
+        container.appendChild(heart);
+      }
+
+      document.getElementById('total').textContent = heartCount;
+    }
+
+    function showReason(heartElement) {
+      if (heartElement.classList.contains('clicked') || heartElement.dataset.clicked) return;
+      heartElement.dataset.clicked = true;
+
+      const availableReasons = reasons.filter((_, i) => !usedReasons.includes(i));
+      if (availableReasons.length === 0) {
+        alert("You've discovered all the reasons! ❤️");
+        return;
+      }
+
+      const index = Math.floor(Math.random() * availableReasons.length);
+      const selected = availableReasons[index];
+      const originalIndex = reasons.indexOf(selected);
+      usedReasons.push(originalIndex);
+
+      heartElement.classList.add('clicked');
+      heartElement.style.transition = 'all 0.5s ease';
+      heartElement.style.opacity = '0';
+      heartElement.style.transform = 'scale(0)';
+      heartElement.style.pointerEvents = 'none';
+      setTimeout(() => heartElement.remove(), 500);
+
+      document.getElementById('reasonTitle').textContent = selected.title;
+      document.getElementById('reasonText').textContent = selected.text;
+      document.getElementById('overlay').classList.add('show');
+      document.getElementById('reasonPopup').classList.add('show');
+
+      discoveredCount++;
+      document.getElementById('counter').textContent = discoveredCount;
+
+      createSparkles(heartElement);
+    }
+
+    function createSparkles(element) {
+      const rect = element.getBoundingClientRect();
+      for (let i = 0; i < 6; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.style.position = 'fixed';
+        sparkle.style.left = rect.left + rect.width / 2 + 'px';
+        sparkle.style.top = rect.top + rect.height / 2 + 'px';
+        sparkle.style.width = sparkle.style.height = '4px';
+        sparkle.style.background = '#ffd700';
+        sparkle.style.borderRadius = '50%';
+        sparkle.style.pointerEvents = 'none';
+        sparkle.style.zIndex = '1000';
+
+        const angle = i * 60 * Math.PI / 180;
+        const distance = 50;
+        document.body.appendChild(sparkle);
+
+        sparkle.animate([
+          { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+          { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, opacity: 0 }
+        ], {
+          duration: 800,
+          easing: 'ease-out'
+        }).onfinish = () => sparkle.remove();
+      }
+    }
+
+    function closePopup() {
+      document.getElementById('overlay').classList.remove('show');
+      document.getElementById('reasonPopup').classList.remove('show');
+    }
+
+    document.getElementById('overlay').addEventListener('click', closePopup);
+
+    document.addEventListener('DOMContentLoaded', () => {
+      createStars();
+      createHearts();
+    });
+
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (usedReasons.length === 0) {
+          createHearts();
         }
-
-        // Create floating hearts
-        function createHearts() {
-            const container = document.getElementById('heartsContainer');
-            const heartCount = 12;
-
-            for (let i = 0; i < heartCount; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'heart';
-                heart.style.left = Math.random() * 80 + 10 + '%';
-                heart.style.top = Math.random() * 70 + 15 + '%';
-                heart.style.animationDelay = Math.random() * 3 + 's';
-                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                
-                heart.addEventListener('click', () => showReason(heart));
-                container.appendChild(heart);
-            }
-
-            document.getElementById('total').textContent = heartCount;
-        }
-
-        // Show reason popup
-        function showReason(heartElement) {
-            if (heartElement.classList.contains('clicked')) return;
-
-            const availableReasons = reasons.filter((_, index) => !usedReasons.includes(index));
-            if (availableReasons.length === 0) return;
-
-            const randomIndex = Math.floor(Math.random() * availableReasons.length);
-            const selectedReason = availableReasons[randomIndex];
-            const originalIndex = reasons.indexOf(selectedReason);
-            
-            usedReasons.push(originalIndex);
-            heartElement.classList.add('clicked');
-            
-            // Make heart disappear with animation
-            heartElement.style.transition = 'all 0.5s ease';
-            heartElement.style.opacity = '0';
-            heartElement.style.transform = 'scale(0)';
-            heartElement.style.pointerEvents = 'none';
-            
-            // Remove heart from DOM after animation
-            setTimeout(() => {
-                heartElement.remove();
-            }, 500);
-
-            document.getElementById('reasonTitle').textContent = selectedReason.title;
-            document.getElementById('reasonText').textContent = selectedReason.text;
-            document.getElementById('overlay').classList.add('show');
-            document.getElementById('reasonPopup').classList.add('show');
-
-            discoveredCount++;
-            document.getElementById('counter').textContent = discoveredCount;
-
-            // Add sparkle effect
-            createSparkles(heartElement);
-        }
-
-        // Create sparkle effect
-        function createSparkles(element) {
-            const rect = element.getBoundingClientRect();
-            for (let i = 0; i < 6; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.style.position = 'fixed';
-                sparkle.style.left = rect.left + rect.width/2 + 'px';
-                sparkle.style.top = rect.top + rect.height/2 + 'px';
-                sparkle.style.width = '4px';
-                sparkle.style.height = '4px';
-                sparkle.style.background = '#ffd700';
-                sparkle.style.borderRadius = '50%';
-                sparkle.style.pointerEvents = 'none';
-                sparkle.style.zIndex = '1000';
-                
-                const angle = (i * 60) * Math.PI / 180;
-                const distance = 50;
-                
-                document.body.appendChild(sparkle);
-                
-                sparkle.animate([
-                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-                    { 
-                        transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, 
-                        opacity: 0 
-                    }
-                ], {
-                    duration: 800,
-                    easing: 'ease-out'
-                }).onfinish = () => sparkle.remove();
-            }
-        }
-
-        // Close popup
-        function closePopup() {
-            document.getElementById('overlay').classList.remove('show');
-            document.getElementById('reasonPopup').classList.remove('show');
-        }
-
-        // Close popup when clicking overlay
-        document.getElementById('overlay').addEventListener('click', closePopup);
-
-        // Initialize the page
-        document.addEventListener('DOMContentLoaded', () => {
-            createStars();
-            createHearts();
-        });
-
-        // Recreate hearts on window resize for better mobile experience
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            // Clear previous timeout
-            clearTimeout(resizeTimeout);
-            
-            // Only recreate hearts after resize is complete and no hearts have been clicked
-            resizeTimeout = setTimeout(() => {
-                if (usedReasons.length === 0) { // Only if no hearts have been clicked yet
-                    createHearts();
-                }
-            }, 250); // Wait for resize to complete
-        });
-    </script>
+      }, 250);
+    });
+  </script>
 </body>
 </html>
