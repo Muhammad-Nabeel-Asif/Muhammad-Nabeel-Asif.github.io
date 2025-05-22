@@ -40,49 +40,38 @@
       100% { opacity: 1; transform: scale(1.2); }
     }
 
-      .initials-symbol {
-        position: fixed;
-        top: 1rem;
-        left: 1rem;
-        font-size: 1.6rem;
-        font-family: 'Georgia', cursive;
-        color: white;
-        z-index: 11;
-        background: rgba(255, 255, 255, 0.1);
-        padding: 0.4rem 1.2rem;
-        border-radius: 20px;
-        backdrop-filter: blur(6px);
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
-                    0 0 30px rgba(255, 100, 150, 0.3);
-        animation: fadeInSymbol 1.5s ease forwards, sparkleGlow 4s ease-in-out infinite;
-        opacity: 0;
-      }
-    
+    .initials-symbol {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      font-size: 1.6rem;
+      font-family: 'Georgia', cursive;
+      color: white;
+      z-index: 11;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 0.4rem 1.2rem;
+      border-radius: 20px;
+      backdrop-filter: blur(6px);
+      animation: fadeInSymbol 1.5s ease forwards, sparkleGlow 4s ease-in-out infinite;
+      opacity: 0;
+    }
+
     .initials-symbol span {
-        display: inline-block;
-        animation: pulseHeart 1.2s infinite ease-in-out;
-      }
-    
+      display: inline-block;
+      animation: pulseHeart 1.2s infinite ease-in-out;
+    }
+
     @keyframes fadeInSymbol {
       from { opacity: 0; transform: translateY(-10px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    
+
     @keyframes pulseHeart {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.3); }
     }
-    
-    @keyframes sparkleGlow {
-      0%, 100% {
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.4),
-                    0 0 30px rgba(255, 100, 150, 0.3);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.6),
-                    0 0 40px rgba(255, 150, 200, 0.4);
-      }
-    }
+
+    /* sparkleGlow will be defined dynamically in JS with theme-specific color */
 
     .container {
       position: relative;
@@ -236,55 +225,6 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    @media (max-width: 768px) {
-      .main-title {
-        font-size: 2rem;
-        margin-top: 5rem;
-      }
-      .subtitle {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-        padding: 0 1rem;
-      }
-      .hearts-container {
-        height: 500px;
-      }
-      .heart {
-        width: 45px;
-        height: 45px;
-      }
-      .heart::before,
-      .heart::after {
-        width: 23px;
-        height: 36px;
-      }
-      .heart::before { left: 23px; }
-      .heart::after { left: 0px; }
-    }
-
-    @media (max-width: 480px) {
-      .main-title {
-        font-size: 1.8rem;
-        margin-top: 5rem;
-      }
-      .subtitle {
-        font-size: 0.9rem;
-      }
-      .hearts-container {
-        height: 600px;
-      }
-      .heart {
-        width: 40px;
-        height: 40px;
-      }
-      .heart::before,
-      .heart::after {
-        width: 20px;
-        height: 32px;
-      }
-      .heart::before { left: 20px; }
-    }
   </style>
 </head>
 <body>
@@ -310,46 +250,16 @@
 
   <script>
     const reasons = [
-      {
-        title: "Your Beautiful Smile",
-        text: "Your smile makes everything better. When I see it, my heart feels warm and happy. It lights up my whole day."
-      },
-      {
-        title: "Your Kindness",
-        text: "You are always kind to everyone. You make people feel cared for, and that shows how beautiful your heart is."
-      },
-      {
-        title: "Your Laugh",
-        text: "Your laugh is one of my favorite sounds. It's full of joy, and it always makes me smile too."
-      },
-      {
-        title: "Your Intelligence",
-        text: "You are so smart, and I love the way you think. Talking with you always teaches me something new."
-      },
-      {
-        title: "Your Strength",
-        text: "Even when life is hard, you stay strong. You handle tough times with courage, and that inspires me."
-      },
-      {
-        title: "Your Dreams",
-        text: "You dream big, and you go after your goals. That makes me want to dream big too, and support you always."
-      },
-      {
-        title: "Your Hugs",
-        text: "When you hug me, I feel safe and loved. Your hugs are my favorite place to be."
-      },
-      {
-        title: "Your Uniqueness",
-        text: "There is no one else like you. Everything about you is special, and I love all of it."
-      },
-      {
-        title: "Your Heart",
-        text: "You have a caring heart. You love deeply, and that love touches everyone around you, especially me."
-      },
-      {
-        title: "Your Everything",
-        text: "I love everything about you — your smile, your heart, your mind. Being with you makes my life better in every way."
-      }
+      { title: "Your Beautiful Smile", text: "Your smile makes everything better. When I see it, my heart feels warm and happy. It lights up my whole day." },
+      { title: "Your Kindness", text: "You are always kind to everyone. You make people feel cared for, and that shows how beautiful your heart is." },
+      { title: "Your Laugh", text: "Your laugh is one of my favorite sounds. It's full of joy, and it always makes me smile too." },
+      { title: "Your Intelligence", text: "You are so smart, and I love the way you think. Talking with you always teaches me something new." },
+      { title: "Your Strength", text: "Even when life is hard, you stay strong. You handle tough times with courage, and that inspires me." },
+      { title: "Your Dreams", text: "You dream big, and you go after your goals. That makes me want to dream big too, and support you always." },
+      { title: "Your Hugs", text: "When you hug me, I feel safe and loved. Your hugs are my favorite place to be." },
+      { title: "Your Uniqueness", text: "There is no one else like you. Everything about you is special, and I love all of it." },
+      { title: "Your Heart", text: "You have a caring heart. You love deeply, and that love touches everyone around you, especially me." },
+      { title: "Your Everything", text: "I love everything about you — your smile, your heart, your mind. Being with you makes my life better in every way." }
     ];
 
     const colorSchemes = [
@@ -359,7 +269,8 @@
         titleColor: 'white',
         subtitleColor: 'rgba(255,255,255,0.9)',
         buttonBg: '#ff6b9d',
-        buttonHover: '#e55a87'
+        buttonHover: '#e55a87',
+        glowColor: '#ff9cd6'
       },
       {
         background: 'linear-gradient(135deg, #43cea2 0%, #185a9d 100%)',
@@ -367,7 +278,8 @@
         titleColor: '#ffffff',
         subtitleColor: '#e6f2ff',
         buttonBg: '#ff7eb9',
-        buttonHover: '#e76aa3'
+        buttonHover: '#e76aa3',
+        glowColor: '#a2faff'
       },
       {
         background: 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)',
@@ -375,7 +287,8 @@
         titleColor: '#3d3d3d',
         subtitleColor: '#4f4f4f',
         buttonBg: '#ff6f91',
-        buttonHover: '#e05575'
+        buttonHover: '#e05575',
+        glowColor: '#ffc8da'
       },
       {
         background: 'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
@@ -383,7 +296,8 @@
         titleColor: '#ffffff',
         subtitleColor: '#f5faff',
         buttonBg: '#ff758c',
-        buttonHover: '#e44d6b'
+        buttonHover: '#e44d6b',
+        glowColor: '#b1eaff'
       }
     ];
 
@@ -393,8 +307,8 @@
       document.querySelector('.main-title').style.color = scheme.titleColor;
       document.querySelector('.subtitle').style.color = scheme.subtitleColor;
 
-      const heartStyle = document.createElement('style');
-      heartStyle.innerHTML = `
+      const dynamicStyle = document.createElement('style');
+      dynamicStyle.innerHTML = `
         .heart::before, .heart::after {
           background: ${scheme.heartColor};
         }
@@ -404,8 +318,23 @@
         .close-btn:hover {
           background: ${scheme.buttonHover};
         }
+        .initials-symbol {
+          box-shadow:
+            0 0 15px ${scheme.glowColor},
+            0 0 30px ${scheme.glowColor};
+        }
+        @keyframes sparkleGlow {
+          0%, 100% {
+            box-shadow: 0 0 15px ${scheme.glowColor},
+                        0 0 30px ${scheme.glowColor};
+          }
+          50% {
+            box-shadow: 0 0 20px ${scheme.glowColor},
+                        0 0 40px ${scheme.glowColor};
+          }
+        }
       `;
-      document.head.appendChild(heartStyle);
+      document.head.appendChild(dynamicStyle);
     }
 
     let discoveredCount = 0;
