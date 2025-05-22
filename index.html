@@ -11,11 +11,11 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      height: 100dvh;
+      overflow: hidden;
       font-family: 'Georgia', Times, 'Times New Roman', serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100dvh;
-      overflow-x: hidden;
       position: relative;
     }
 
@@ -46,7 +46,7 @@
       z-index: 2;
       text-align: center;
       padding: 2rem;
-      min-height: 100vh;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -182,13 +182,13 @@
 
     .counter {
       position: fixed;
-      top: 2rem;
-      right: 2rem;
+      top: 1rem;
+      right: 1rem;
       background: rgba(255,255,255,0.2);
-      padding: 1rem;
+      padding: 0.8rem 1rem;
       border-radius: 15px;
       color: white;
-      font-size: 1.1rem;
+      font-size: 1rem;
       backdrop-filter: blur(10px);
       z-index: 10;
     }
@@ -204,22 +204,51 @@
     }
 
     @media (max-width: 768px) {
-      .main-title { font-size: 2rem; margin-top: 3rem; }
-      .subtitle { font-size: 1rem; padding: 0 1rem; margin-bottom: 2rem; }
-      .container { padding: 1rem; padding-top: 0; }
-      .hearts-container { height: 500px; }
-      .heart { width: 45px; height: 45px; }
-      .heart::before, .heart::after { width: 23px; height: 36px; }
+      .main-title {
+        font-size: 2rem;
+        margin-top: 5rem; /* Prevent overlap with counter */
+      }
+      .subtitle {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+      }
+      .hearts-container {
+        height: 500px;
+      }
+      .heart {
+        width: 45px;
+        height: 45px;
+      }
+      .heart::before,
+      .heart::after {
+        width: 23px;
+        height: 36px;
+      }
       .heart::before { left: 23px; }
-      .heart::after { left: 0; }
+      .heart::after { left: 0px; }
     }
 
     @media (max-width: 480px) {
-      .main-title { font-size: 1.8rem; margin-top: 3.5rem; }
-      .subtitle { font-size: 0.9rem; }
-      .hearts-container { height: 600px; }
-      .heart { width: 40px; height: 40px; }
-      .heart::before, .heart::after { width: 20px; height: 32px; }
+      .main-title {
+        font-size: 1.8rem;
+        margin-top: 5rem; /* Prevent overlap with counter */
+      }
+      .subtitle {
+        font-size: 0.9rem;
+      }
+      .hearts-container {
+        height: 600px;
+      }
+      .heart {
+        width: 40px;
+        height: 40px;
+      }
+      .heart::before,
+      .heart::after {
+        width: 20px;
+        height: 32px;
+      }
       .heart::before { left: 20px; }
     }
   </style>
