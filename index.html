@@ -247,215 +247,227 @@
     <p id="reasonText"></p>
     <button class="close-btn" onclick="closePopup()">Close ❤️</button>
   </div>
+<script>
+const reasons = [
+  { title: "Your Beautiful Smile", text: "Your smile makes everything better. When I see it, my heart feels warm and happy. It lights up my whole day." },
+  { title: "Your Kindness", text: "You are always kind to everyone. You make people feel cared for, and that shows how beautiful your heart is." },
+  { title: "Your Laugh", text: "Your laugh is one of my favorite sounds. It's full of joy, and it always makes me smile too." },
+  { title: "Your Intelligence", text: "You are so smart, and I love the way you think. Talking with you always teaches me something new." },
+  { title: "Your Strength", text: "Even when life is hard, you stay strong. You handle tough times with courage, and that inspires me." },
+  { title: "Your Dreams", text: "You dream big, and you go after your goals. That makes me want to dream big too, and support you always." },
+  { title: "Your Hugs", text: "When you hug me, I feel safe and loved. Your hugs are my favorite place to be." },
+  { title: "Your Uniqueness", text: "There is no one else like you. Everything about you is special, and I love all of it." },
+  { title: "Your Heart", text: "You have a caring heart. You love deeply, and that love touches everyone around you, especially me." },
+  { title: "Your Everything", text: "I love everything about you — your smile, your heart, your mind. Being with you makes my life better in every way." }
+];
 
-  <script>
-    const reasons = [
-      { title: "Your Beautiful Smile", text: "Your smile makes everything better. When I see it, my heart feels warm and happy. It lights up my whole day." },
-      { title: "Your Kindness", text: "You are always kind to everyone. You make people feel cared for, and that shows how beautiful your heart is." },
-      { title: "Your Laugh", text: "Your laugh is one of my favorite sounds. It's full of joy, and it always makes me smile too." },
-      { title: "Your Intelligence", text: "You are so smart, and I love the way you think. Talking with you always teaches me something new." },
-      { title: "Your Strength", text: "Even when life is hard, you stay strong. You handle tough times with courage, and that inspires me." },
-      { title: "Your Dreams", text: "You dream big, and you go after your goals. That makes me want to dream big too, and support you always." },
-      { title: "Your Hugs", text: "When you hug me, I feel safe and loved. Your hugs are my favorite place to be." },
-      { title: "Your Uniqueness", text: "There is no one else like you. Everything about you is special, and I love all of it." },
-      { title: "Your Heart", text: "You have a caring heart. You love deeply, and that love touches everyone around you, especially me." },
-      { title: "Your Everything", text: "I love everything about you — your smile, your heart, your mind. Being with you makes my life better in every way." }
-    ];
+const colorSchemes = [
+  {
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    heartColor: '#ff6b9d',
+    titleColor: 'white',
+    subtitleColor: 'rgba(255,255,255,0.9)',
+    buttonBg: '#ff6b9d',
+    buttonHover: '#e55a87',
+    glowColor: '#ff9cd6'
+  },
+  {
+    background: 'linear-gradient(135deg, #43cea2 0%, #185a9d 100%)',
+    heartColor: '#ff7eb9',
+    titleColor: '#ffffff',
+    subtitleColor: '#e6f2ff',
+    buttonBg: '#ff7eb9',
+    buttonHover: '#e76aa3',
+    glowColor: '#a2faff'
+  },
+  {
+    background: 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)',
+    heartColor: '#ff6f91',
+    titleColor: '#3d3d3d',
+    subtitleColor: '#4f4f4f',
+    buttonBg: '#ff6f91',
+    buttonHover: '#e05575',
+    glowColor: '#ffc8da'
+  },
+  {
+    background: 'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
+    heartColor: '#ff758c',
+    titleColor: '#ffffff',
+    subtitleColor: '#f5faff',
+    buttonBg: '#ff758c',
+    buttonHover: '#e44d6b',
+    glowColor: '#00cfff' // Updated glow for aqua theme
+  }
+];
 
-    const colorSchemes = [
-      {
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        heartColor: '#ff6b9d',
-        titleColor: 'white',
-        subtitleColor: 'rgba(255,255,255,0.9)',
-        buttonBg: '#ff6b9d',
-        buttonHover: '#e55a87',
-        glowColor: '#ff9cd6'
-      },
-      {
-        background: 'linear-gradient(135deg, #43cea2 0%, #185a9d 100%)',
-        heartColor: '#ff7eb9',
-        titleColor: '#ffffff',
-        subtitleColor: '#e6f2ff',
-        buttonBg: '#ff7eb9',
-        buttonHover: '#e76aa3',
-        glowColor: '#a2faff'
-      },
-      {
-        background: 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%)',
-        heartColor: '#ff6f91',
-        titleColor: '#3d3d3d',
-        subtitleColor: '#4f4f4f',
-        buttonBg: '#ff6f91',
-        buttonHover: '#e05575',
-        glowColor: '#ffc8da'
-      },
-      {
-        background: 'linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%)',
-        heartColor: '#ff758c',
-        titleColor: '#ffffff',
-        subtitleColor: '#f5faff',
-        buttonBg: '#ff758c',
-        buttonHover: '#e44d6b',
-        glowColor: '#00cfff'
-      }
-    ];
+function applyRandomColorScheme() {
+  const scheme = colorSchemes[Math.floor(Math.random() * colorSchemes.length)];
+  document.body.style.background = scheme.background;
+  document.querySelector('.main-title').style.color = scheme.titleColor;
+  document.querySelector('.subtitle').style.color = scheme.subtitleColor;
 
-    function applyRandomColorScheme() {
-      const scheme = colorSchemes[Math.floor(Math.random() * colorSchemes.length)];
-      document.body.style.background = scheme.background;
-      document.querySelector('.main-title').style.color = scheme.titleColor;
-      document.querySelector('.subtitle').style.color = scheme.subtitleColor;
-
-      const dynamicStyle = document.createElement('style');
-      dynamicStyle.innerHTML = `
-        .heart::before, .heart::after {
-          background: ${scheme.heartColor};
-        }
-        .close-btn {
-          background: ${scheme.buttonBg};
-        }
-        .close-btn:hover {
-          background: ${scheme.buttonHover};
-        }
-        .initials-symbol {
-          box-shadow:
-            0 0 15px ${scheme.glowColor},
-            0 0 30px ${scheme.glowColor};
-        }
-        @keyframes sparkleGlow {
-          0%, 100% {
-            box-shadow: 0 0 15px ${scheme.glowColor},
-                        0 0 30px ${scheme.glowColor};
-          }
-          50% {
-            box-shadow: 0 0 20px ${scheme.glowColor},
-                        0 0 40px ${scheme.glowColor};
-          }
-        }
-      `;
-      document.head.appendChild(dynamicStyle);
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .heart::before, .heart::after {
+      background: ${scheme.heartColor};
     }
-
-    let discoveredCount = 0;
-    let usedReasons = [];
-
-    function createStars() {
-      const starsContainer = document.getElementById('stars');
-      for (let i = 0; i < 100; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
-        star.style.animationDelay = Math.random() * 2 + 's';
-        starsContainer.appendChild(star);
+    .close-btn {
+      background: ${scheme.buttonBg};
+    }
+    .close-btn:hover {
+      background: ${scheme.buttonHover};
+    }
+    .initials-symbol {
+      box-shadow:
+        0 0 15px ${scheme.glowColor},
+        0 0 30px ${scheme.glowColor};
+    }
+    @keyframes sparkleGlow {
+      0%, 100% {
+        box-shadow: 0 0 15px ${scheme.glowColor},
+                    0 0 30px ${scheme.glowColor};
+      }
+      50% {
+        box-shadow: 0 0 20px ${scheme.glowColor},
+                    0 0 40px ${scheme.glowColor};
       }
     }
+  `;
+  document.head.appendChild(style);
+}
 
-    function createHearts() {
-      const container = document.getElementById('heartsContainer');
-      container.innerHTML = '';
-      const heartCount = Math.min(12, reasons.length);
+let discoveredCount = 0;
+let usedReasons = [];
 
-      for (let i = 0; i < heartCount; i++) {
-        const heart = document.createElement('div');
-        heart.className = 'heart';
-        heart.setAttribute('role', 'button');
-        heart.setAttribute('tabindex', '0');
-        heart.style.left = Math.random() * 80 + 10 + '%';
-        heart.style.top = Math.random() * 70 + 15 + '%';
-        heart.style.animationDelay = Math.random() * 3 + 's';
-        heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
-        heart.addEventListener('click', () => showReason(heart));
-        container.appendChild(heart);
-      }
+function createStars() {
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 100; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random() * 100 + '%';
+    star.style.top = Math.random() * 100 + '%';
+    star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+    star.style.animationDelay = Math.random() * 2 + 's';
+    starsContainer.appendChild(star);
+  }
+}
 
-      document.getElementById('total').textContent = heartCount;
-    }
+function createHearts() {
+  const container = document.getElementById('heartsContainer');
+  container.innerHTML = '';
+  const heartCount = Math.min(12, reasons.length);
 
-    function showReason(heartElement) {
-      if (heartElement.classList.contains('clicked') || heartElement.dataset.clicked) return;
-      heartElement.dataset.clicked = true;
+  for (let i = 0; i < heartCount; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.setAttribute('role', 'button');
+    heart.setAttribute('tabindex', '0');
+    heart.style.left = Math.random() * 80 + 10 + '%';
+    heart.style.top = Math.random() * 70 + 15 + '%';
+    heart.style.animationDelay = Math.random() * 3 + 's';
+    heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+    heart.addEventListener('click', () => showReason(heart));
+    container.appendChild(heart);
+  }
 
-      const availableReasons = reasons.filter((_, i) => !usedReasons.includes(i));
-      if (availableReasons.length === 0) {
-        alert("You've discovered all the reasons! ❤️");
-        return;
-      }
+  document.getElementById('total').textContent = heartCount;
+}
 
-      const index = Math.floor(Math.random() * availableReasons.length);
-      const selected = availableReasons[index];
-      const originalIndex = reasons.indexOf(selected);
-      usedReasons.push(originalIndex);
+function showReason(heartElement) {
+  if (heartElement.classList.contains('clicked') || heartElement.dataset.clicked) return;
+  heartElement.dataset.clicked = true;
 
-      heartElement.classList.add('clicked');
-      heartElement.style.transition = 'all 0.5s ease';
-      heartElement.style.opacity = '0';
-      heartElement.style.transform = 'scale(0)';
-      heartElement.style.pointerEvents = 'none';
-      setTimeout(() => heartElement.remove(), 500);
+  const availableReasons = reasons.filter((_, i) => !usedReasons.includes(i));
+  if (availableReasons.length === 0) return;
 
-      document.getElementById('reasonTitle').textContent = selected.title;
-      document.getElementById('reasonText').textContent = selected.text;
+  const index = Math.floor(Math.random() * availableReasons.length);
+  const selected = availableReasons[index];
+  const originalIndex = reasons.indexOf(selected);
+  usedReasons.push(originalIndex);
+
+  heartElement.classList.add('clicked');
+  heartElement.style.transition = 'all 0.5s ease';
+  heartElement.style.opacity = '0';
+  heartElement.style.transform = 'scale(0)';
+  heartElement.style.pointerEvents = 'none';
+  setTimeout(() => heartElement.remove(), 500);
+
+  document.getElementById('reasonTitle').textContent = selected.title;
+  document.getElementById('reasonText').textContent = selected.text;
+  document.getElementById('overlay').classList.add('show');
+  document.getElementById('reasonPopup').classList.add('show');
+
+  discoveredCount++;
+  document.getElementById('counter').textContent = discoveredCount;
+
+  createSparkles(heartElement);
+
+  if (discoveredCount === parseInt(document.getElementById('total').textContent)) {
+    setTimeout(() => {
       document.getElementById('overlay').classList.add('show');
-      document.getElementById('reasonPopup').classList.add('show');
+      document.getElementById('birthdayPopup').classList.add('show');
+    }, 600);
+  }
+}
 
-      discoveredCount++;
-      document.getElementById('counter').textContent = discoveredCount;
+function createSparkles(element) {
+  const rect = element.getBoundingClientRect();
+  for (let i = 0; i < 6; i++) {
+    const sparkle = document.createElement('div');
+    sparkle.style.position = 'fixed';
+    sparkle.style.left = rect.left + rect.width / 2 + 'px';
+    sparkle.style.top = rect.top + rect.height / 2 + 'px';
+    sparkle.style.width = sparkle.style.height = '4px';
+    sparkle.style.background = '#ffd700';
+    sparkle.style.borderRadius = '50%';
+    sparkle.style.pointerEvents = 'none';
+    sparkle.style.zIndex = '1000';
 
-      createSparkles(heartElement);
-    }
+    const angle = i * 60 * Math.PI / 180;
+    const distance = 50;
+    document.body.appendChild(sparkle);
 
-    function createSparkles(element) {
-      const rect = element.getBoundingClientRect();
-      for (let i = 0; i < 6; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.style.position = 'fixed';
-        sparkle.style.left = rect.left + rect.width / 2 + 'px';
-        sparkle.style.top = rect.top + rect.height / 2 + 'px';
-        sparkle.style.width = sparkle.style.height = '4px';
-        sparkle.style.background = '#ffd700';
-        sparkle.style.borderRadius = '50%';
-        sparkle.style.pointerEvents = 'none';
-        sparkle.style.zIndex = '1000';
+    sparkle.animate([
+      { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+      { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, opacity: 0 }
+    ], {
+      duration: 800,
+      easing: 'ease-out'
+    }).onfinish = () => sparkle.remove();
+  }
+}
 
-        const angle = i * 60 * Math.PI / 180;
-        const distance = 50;
-        document.body.appendChild(sparkle);
+function closePopup() {
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('reasonPopup').classList.remove('show');
+}
 
-        sparkle.animate([
-          { transform: 'translate(0, 0) scale(1)', opacity: 1 },
-          { transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px) scale(0)`, opacity: 0 }
-        ], {
-          duration: 800,
-          easing: 'ease-out'
-        }).onfinish = () => sparkle.remove();
-      }
-    }
+function closeBirthdayPopup() {
+  document.getElementById('overlay').classList.remove('show');
+  document.getElementById('birthdayPopup').classList.remove('show');
+}
 
-    function closePopup() {
-      document.getElementById('overlay').classList.remove('show');
-      document.getElementById('reasonPopup').classList.remove('show');
-    }
+document.getElementById('overlay').addEventListener('click', () => {
+  closePopup();
+  closeBirthdayPopup();
+});
 
-    document.getElementById('overlay').addEventListener('click', closePopup);
+document.addEventListener('DOMContentLoaded', () => {
+  applyRandomColorScheme();
+  createStars();
+  createHearts();
+});
 
-    document.addEventListener('DOMContentLoaded', () => {
-      applyRandomColorScheme();
-      createStars();
+let resizeTimeout;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    if (usedReasons.length === 0) {
       createHearts();
-    });
+    }
+  }, 250);
+});
+</script>
 
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        if (usedReasons.length === 0) {
-          createHearts();
-        }
-      }, 250);
-    });
-  </script>
 </body>
 </html>
